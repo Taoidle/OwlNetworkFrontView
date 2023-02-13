@@ -1,0 +1,45 @@
+<div class="mat-card-container">
+  <div class="card-container">
+    <mat-card>
+      <mat-card-content>
+        <form>
+          <h2>网络配置</h2>
+          <div class="form-group">
+            <mat-form-field (click)="getList()">
+              <mat-label>SSID</mat-label>
+              <input type="text"
+                     placeholder="选择或输入WiFi名称"
+                     matInput
+                     [(ngModel)]="ssid"
+                     [formControl]="ssidFormControl"
+                     [matAutocomplete]="auto"
+                      required>
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field>
+              <mat-label>密码</mat-label>
+              <input matInput type="password" placeholder="密码" name="password"
+                     [(ngModel)]="password"
+                     [formControl]="passwdFormControl"
+                     required>
+              <mat-error>
+                请输入有效的密码
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <button mat-raised-button type="submit" class="btn btn-success" (click)="onConnect()">登录</button>
+        </form>
+        <p>
+          <a class="forget-passwd" (click)="resetWiFi()">重置WiFi</a>
+          <a class="register" (click)="rescanWiFi()">扫描WiFi</a>
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

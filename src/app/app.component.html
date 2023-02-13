@@ -1,0 +1,17 @@
+<div class="top-of-page"></div>
+<mat-toolbar>
+  <div class="bar-title">{{title}}</div>
+</mat-toolbar>
+
+<mat-sidenav-container class="sidenav-container">
+
+  <router-outlet></router-outlet>
+  <!--<router-outlet> 会告诉路由器要在哪里显示路由的视图。-->
+  <footer class="page-footer font-small blue">
+    <div class="footer-copyright ">Copyright © 2023
+      <a href="https://www.singfly.com.cn/">Singfly</a>
+      All rights reserved.
+    </div>
+  </footer>
+</mat-sidenav-container>
+

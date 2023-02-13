@@ -1,0 +1,108 @@
+/* AppComponent's private CSS styles */
+//h1 {
+//  margin-bottom: 0;
+//}
+//nav a {
+//  padding: 1rem;
+//  text-decoration: none;
+//  margin-top: 10px;
+//  display: inline-block;
+//  background-color: #e8e8e8;
+//  color: #3d3d3d;
+//  border-radius: 4px;
+//}
+//
+//nav a:hover {
+//  color: white;
+//  background-color: #42545C;
+//}
+//nav a.active {
+//  background-color: black;
+//}
+.top-of-page {
+  display: block;
+}
+mat-toolbar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 10;
+  padding: 0;
+  //height: 100%;
+  background-color: #000000 !important;
+  box-shadow: 0 2px 5px #0000004d;
+}
+
+mat-toolbar .bar-title {
+  color: #ffffff;
+  display: block;
+  margin: 0 auto;
+  font-size: x-large;
+}
+
+.mat-toolbar-icon button {
+  height: 100%;
+  margin: 0 8px 0 0;
+  min-width: 64px;
+}
+
+.mat-toolbar-title {
+  display: block;
+  margin-left: 10px;
+}
+
+mat-sidenav-container {
+  background-color: #fff;
+  position: relative;
+  //top: 64px;
+  z-index: 1;
+  box-sizing: border-box;
+  display: block;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
+
+mat-sidenav {
+  display: block;
+  position: fixed;
+  top: 64px !important;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  min-width: 200px;
+  z-index: 2;
+}
+
+mat-nav-list {
+  padding: 0;
+}
+
+.mat-placeholder {
+  //display: flex;
+  width: 100%;
+  height: 64px;
+}
+
+.mat-list-item-span {
+  display: block;
+  margin-left: 15px;
+}
+
+footer {
+  //position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  color: #999;
+  background-color: #f5f5f5;
+  z-index: 9;
+  text-align: center;
+}
+
+.footer-copyright a {
+  color: #03A9F4;
+  text-decoration: none;
+}
