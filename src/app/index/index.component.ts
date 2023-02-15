@@ -78,12 +78,6 @@ export class IndexComponent implements OnInit{
 
   rescanWiFi() {
     firstValueFrom(this.http.get("/api/rescan").pipe(retry(3))).then(res => {
-      // @ts-ignore
-      if (res['statusCode'] === 200) {
-        console.log("database is ok");
-      } else {
-        this.dialog.open(AlertDialogRescan);
-      }
     }, e => {
       console.error(e)
     });
