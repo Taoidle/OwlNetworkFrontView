@@ -43,7 +43,7 @@ export class UpdateComponent {
   }
 
   uploadFilesSimulator(index: number) {
-    this.upload(this.files[index]).subscribe(
+    this.uploadSub = this.upload(this.files[index]).subscribe(
       event => {
         if (event.type == HttpEventType.UploadProgress) {
           // @ts-ignore
@@ -56,16 +56,16 @@ export class UpdateComponent {
 
   upload(file: Object): Observable<any> {
 
-    console.log(typeof file);
-
     const formData = new FormData();
     // @ts-ignore
     formData.append("file", file, file.name);
 
     return this.http.post("/api/update", formData, {
-        reportProgress: true,
-        observe: 'events'
-    })
+      reportProgress: true,
+      observe: 'events'
+    }).pipe(
+      finalize(() => this.reset())
+    );
   }
 
   formatBytes(bytes: number, decimals = 2) {
