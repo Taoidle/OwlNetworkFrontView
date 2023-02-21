@@ -48,7 +48,7 @@ export class UpdateComponent {
         if (event.type == HttpEventType.UploadProgress) {
           // @ts-ignore
           this.uploadProgress = Math.round(100 * (event.loaded / event.total));
-          console.log(this.uploadProgress);
+          // console.log(this.uploadProgress);
         }
       },
     );
