@@ -1,0 +1,28 @@
+<div class="mat-card-container">
+  <div class="card-container">
+    <div class="dropzone" appDnd (fileDropped)="onFileDropped($event)">
+      <input type="file" #fileDropRef id="fileDropRef" multiple (change)="fileBrowseHandler($event)">
+      <div class="dropzone-item">
+        <img src="assets/icons/cloud_upload_FILL0_wght400_GRAD0_opsz48.svg" alt="">
+        <h3>Drag and drop file here</h3>
+        <h3>or</h3>
+        <label for="fileDropRef">Browse for file</label>
+      </div>
+    </div>
+<!--    <div class="files-list">-->
+      <div class="single-file" *ngFor="let file of files; let i = index">
+        <img src="assets/icons/description_FILL0_wght400_GRAD0_opsz48.svg" width="54px" alt="file">
+        <div class="info">
+          <h4 class="name">
+            {{ file?.name }}
+          </h4>
+          <p class="size">
+            {{ formatBytes(file?.size) }}
+          </p>
+          <mat-progress-bar mode="determinate" [value]=uploadProgress></mat-progress-bar>
+        </div>
+        <img src="assets/icons/delete_FILL0_wght400_GRAD0_opsz48.svg" width="32px" alt="file" (click)="cancelUpload(i)">
+      </div>
+<!--    </div>-->
+  </div>
+</div>
