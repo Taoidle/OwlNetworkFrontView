@@ -26,8 +26,11 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { MatTreeModule } from "@angular/material/tree";
-import {IndexComponent, AlertDialogRescan, AlertDialogReset, AlertDialogConnect} from './index/index.component';
-import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import { IndexComponent, AlertDialogRescan, AlertDialogReset, AlertDialogConnect } from './index/index.component';
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import { UpdateComponent } from './update/update.component';
+import { DndDirective } from './update/dnd.directive';
+import { MatProgressBarModule } from "@angular/material/progress-bar";
 
 @NgModule({
   declarations: [
@@ -35,7 +38,9 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
     IndexComponent,
     AlertDialogConnect,
     AlertDialogRescan,
-    AlertDialogReset
+    AlertDialogReset,
+    UpdateComponent,
+    DndDirective
   ],
   imports: [
     BrowserModule,
@@ -62,6 +67,7 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
     MatExpansionModule,
     MatTreeModule,
     MatAutocompleteModule,
+    MatProgressBarModule,
     //forRoot() 配置方法接收一个 InMemoryDataService 类来初始化内存数据库。
     // HttpClientInMemoryWebApiModule.forRoot(
     //   InMemoryDataService, {dataEncapsulation: false}

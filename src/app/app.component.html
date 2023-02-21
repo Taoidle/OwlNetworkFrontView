@@ -1,9 +1,29 @@
 <div class="top-of-page"></div>
-<mat-toolbar>
-  <div class="bar-title">{{title}}</div>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button
+      type="button"
+      aria-label="Toggle sidenav"
+      mat-icon-button
+      (click)="drawer.toggle()">
+      <!--        *ngIf="isHandset$ | async" -->
+      <mat-icon class="mat-toolbar-icon" aria-label="Side nav toggle icon">menu</mat-icon>
+    </button>
+    <span class="mat-toolbar-title">{{title}}</span>
+  </mat-toolbar-row>
 </mat-toolbar>
-
 <mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="'dialog'" [mode]="'side'" [opened]="(isHandset$ | async) === false">
+    <!--      [mode]="(isHandset$ | async) ? 'over' : 'side'"-->
+    <!--    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"-->
+    <mat-nav-list>
+      <a mat-list-item *ngFor="let navlist of sidenavList" href="{{navlist.path}}">
+        <mat-icon class="mat-list-item-icon">{{navlist.icon}}</mat-icon>
+        <span class="mat-list-item-span">{{navlist.text}}</span>
+      </a>
+    </mat-nav-list>
+
+  </mat-sidenav>
 
   <router-outlet></router-outlet>
   <!--<router-outlet> 会告诉路由器要在哪里显示路由的视图。-->
