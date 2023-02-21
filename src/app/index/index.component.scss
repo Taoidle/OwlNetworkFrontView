@@ -5,6 +5,10 @@ mat-card {
   text-align: center;
 }
 
+mat-form-field {
+  display: block;
+}
+
 .mat-card-container {
   //position: absolute;
   display: table;
@@ -16,14 +20,9 @@ mat-card {
   display: table-cell;
   vertical-align: middle;
 }
-mat-form-field {
-  background-color: white;
-  display: block;
-  margin-bottom: 20px;
-}
 
-:host ::ng-deep .mat-mdc-text-field-wrapper{
-  background-color: white;
+mat-form-field {
+  margin-bottom: 20px;
 }
 
 button {
@@ -55,4 +54,8 @@ a:hover {
 .register {
   text-align: right;
   //float: right;
+}
+
+:host ::ng-deep .mat-mdc-text-field-wrapper{
+  background-color: white;
 }

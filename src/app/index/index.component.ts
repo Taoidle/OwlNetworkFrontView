@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {firstValueFrom, map, Observable, retry, startWith} from "rxjs";
-import {HttpClient} from "@angular/common/http";
-import {FormControl, Validators} from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { firstValueFrom, map, Observable, retry, startWith } from "rxjs";
+import { HttpClient } from "@angular/common/http";
+import { FormControl, Validators } from "@angular/forms";
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
@@ -9,7 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss']
 })
-export class IndexComponent implements OnInit{
+export class IndexComponent implements OnInit {
   options: string[] = [];
   filteredOptions: Observable<string[]> | undefined;
 
@@ -19,7 +19,7 @@ export class IndexComponent implements OnInit{
   ssidFormControl = new FormControl('', [Validators.required, Validators.pattern('[0-9a-zA-Z_-]{1,}')]);
   passwdFormControl = new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(32), Validators.pattern('[0-9a-zA-Z_-]{1,}')]);
 
-  constructor(private http: HttpClient,public dialog: MatDialog) {
+  constructor(private http: HttpClient, public dialog: MatDialog) {
   }
 
   ngOnInit() {
