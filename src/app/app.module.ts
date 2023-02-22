@@ -1,8 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from "@angular/common";
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -28,9 +26,6 @@ import { MatExpansionModule } from "@angular/material/expansion";
 import { MatTreeModule } from "@angular/material/tree";
 import { IndexComponent, AlertDialogRescan, AlertDialogReset, AlertDialogConnect } from './index/index.component';
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
-import { UpdateComponent } from './update/update.component';
-import { DndDirective } from './update/dnd.directive';
-import { MatProgressBarModule } from "@angular/material/progress-bar";
 
 @NgModule({
   declarations: [
@@ -39,15 +34,12 @@ import { MatProgressBarModule } from "@angular/material/progress-bar";
     AlertDialogConnect,
     AlertDialogRescan,
     AlertDialogReset,
-    UpdateComponent,
-    DndDirective
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     AppRoutingModule,
-    // 把 HttpClientModule 添加到 imports 数组中：
     HttpClientModule,
     MatToolbarModule,
     MatIconModule,
@@ -67,11 +59,6 @@ import { MatProgressBarModule } from "@angular/material/progress-bar";
     MatExpansionModule,
     MatTreeModule,
     MatAutocompleteModule,
-    MatProgressBarModule,
-    //forRoot() 配置方法接收一个 InMemoryDataService 类来初始化内存数据库。
-    // HttpClientInMemoryWebApiModule.forRoot(
-    //   InMemoryDataService, {dataEncapsulation: false}
-    // )
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { IndexComponent } from "./index/index.component";
-import { UpdateComponent } from "./update/update.component";
 
 const routes: Routes = [
   {path: 'index', component: IndexComponent},
-  {path: 'update', component: UpdateComponent},
+  {path: 'update', loadChildren: () => import('./update/update.module').then(m => m.UpdateModule)},
   {path: '', redirectTo: '/index', pathMatch: 'full'},
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules})],
+  exports: [RouterModule],
+  providers: [],
 })
 export class AppRoutingModule {
 }
