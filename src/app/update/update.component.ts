@@ -1,6 +1,6 @@
-import { Component, Directive, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { HttpClient, HttpEventType } from "@angular/common/http";
-import { finalize, firstValueFrom, Observable, retry, Subscription } from "rxjs";
+import { Observable, Subscription } from "rxjs";
 
 @Component({
   selector: 'app-update',
@@ -8,64 +8,67 @@ import { finalize, firstValueFrom, Observable, retry, Subscription } from "rxjs"
   styleUrls: ['./update.component.scss']
 })
 export class UpdateComponent {
-
-  uploadProgress: number | undefined;
-  uploadSub: Subscription | undefined;
+  uploadSub: Subscription[] = [];
 
   constructor(private http: HttpClient) {
   }
 
   @ViewChild("fileDropRef", {static: false}) fileDropEl: ElementRef | undefined;
   public files: any[] = [];
+  public fileIndex: number = 0;
 
 
   onFileDropped(event: Event) {
     const element = event.currentTarget as HTMLInputElement;
     let fileList: FileList | null = element.files;
+    this.fileIndex = this.files.length;
     if (fileList !== null) {
-      this.files.push(fileList[0]);
-      // @ts-ignore
-      this.fileDropEl.nativeElement.value = "";
-      this.uploadFilesSimulator(0);
+      this.prepareFilesList(fileList[0]);
     }
   }
 
   fileBrowseHandler(event: Event) {
     const element = event.currentTarget as HTMLInputElement;
     let fileList: FileList | null = element.files;
+    this.fileIndex = this.files.length;
     if (fileList !== null) {
-      // this.prepareFilesList(fileList);
-      this.files.push(fileList[0]);
-      // @ts-ignore
-      this.fileDropEl.nativeElement.value = "";
-      this.uploadFilesSimulator(0);
+      this.prepareFilesList(fileList[0]);
     }
   }
 
+  prepareFilesList(file: Object) {
+    // @ts-ignore
+    file.progress = 0;
+    this.files.push(file);
+    // @ts-ignore
+    this.fileDropEl.nativeElement.value = "";
+    this.uploadFilesSimulator(this.fileIndex);
+  }
+
   uploadFilesSimulator(index: number) {
-    this.uploadSub = this.upload(this.files[index]).subscribe(
+    console.log("uploadFilesSimulator");
+    this.uploadSub[index] = this.upload(this.files[index]).subscribe(
       event => {
         if (event.type == HttpEventType.UploadProgress) {
-          // @ts-ignore
-          this.uploadProgress = Math.round(100 * (event.loaded / event.total));
-          // console.log(this.uploadProgress);
+          this.files[index].progress = Math.round(100 * (event.loaded / event.total));
         }
       },
     );
+    if (this.uploadSub[index] !== undefined) {
+      this.fileIndex += 1;
+      console.log("this.fileIndex:", this.fileIndex);
+    }
+
   }
 
   upload(file: Object): Observable<any> {
-
     const formData = new FormData();
     // @ts-ignore
     formData.append("file", file, file.name);
-
     return this.http.post("/api/update", formData, {
       reportProgress: true,
       observe: 'events'
-    }).pipe(
-      finalize(() => this.reset())
-    );
+    });
   }
 
   formatBytes(bytes: number, decimals = 2) {
@@ -80,15 +83,10 @@ export class UpdateComponent {
   }
 
   cancelUpload(index: number) {
-    if (this.uploadSub !== undefined) {
-      this.uploadSub.unsubscribe();
+    if (this.uploadSub[index] !== undefined) {
+      this.uploadSub[index].unsubscribe();
     }
     this.files.splice(index, 1);
-    this.reset();
-  }
-
-  reset() {
-    this.uploadProgress = undefined;
-    this.uploadSub = undefined;
+    this.uploadSub = this.uploadSub.filter(item => item !== this.uploadSub[index]);
   }
 }

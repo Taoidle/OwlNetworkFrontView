@@ -19,7 +19,7 @@
           <p class="size">
             {{ formatBytes(file?.size) }}
           </p>
-          <mat-progress-bar mode="determinate" [value]=uploadProgress></mat-progress-bar>
+          <mat-progress-bar mode="determinate" [value]=file.progress></mat-progress-bar>
         </div>
         <img src="assets/icons/delete_FILL0_wght400_GRAD0_opsz48.svg" width="32px" alt="file" (click)="cancelUpload(i)">
       </div>
