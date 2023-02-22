@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { HttpClient, HttpEventType } from "@angular/common/http";
 import { Observable, Subscription } from "rxjs";
+import { MatDialog } from "@angular/material/dialog";
 
 @Component({
   selector: 'app-update',
@@ -10,7 +11,7 @@ import { Observable, Subscription } from "rxjs";
 export class UpdateComponent {
   uploadSub: Subscription[] = [];
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, public dialog: MatDialog) {
   }
 
   @ViewChild("fileDropRef", {static: false}) fileDropEl: ElementRef | undefined;
@@ -37,12 +38,20 @@ export class UpdateComponent {
   }
 
   prepareFilesList(file: Object) {
-    // @ts-ignore
-    file.progress = 0;
-    this.files.push(file);
-    // @ts-ignore
-    this.fileDropEl.nativeElement.value = "";
-    this.uploadFilesSimulator(this.fileIndex);
+    if (file !== null) {
+      // @ts-ignore
+      const filename_list = file.name.split('.');
+      if (filename_list[filename_list.length - 1] === "zip") {
+        // @ts-ignore
+        file.progress = 0;
+        this.files.push(file);
+        // @ts-ignore
+        this.fileDropEl.nativeElement.value = "";
+        this.uploadFilesSimulator(this.fileIndex);
+      } else {
+        this.dialog.open(AlertDialogFiletype);
+      }
+    }
   }
 
   uploadFilesSimulator(index: number) {
@@ -89,4 +98,12 @@ export class UpdateComponent {
     this.files.splice(index, 1);
     this.uploadSub = this.uploadSub.filter(item => item !== this.uploadSub[index]);
   }
+}
+
+@Component({
+  selector: 'alert-dialog-filetype',
+  styleUrls: ['alert-dialog-filetype.scss'],
+  templateUrl: 'alert-dialog-filetype.html',
+})
+export class AlertDialogFiletype {
 }
