@@ -19,9 +19,7 @@ export class UpdateComponent {
   public fileIndex: number = 0;
 
 
-  onFileDropped(event: Event) {
-    const element = event.currentTarget as HTMLInputElement;
-    let fileList: FileList | null = element.files;
+  onFileDropped(fileList: FileList) {
     this.fileIndex = this.files.length;
     if (fileList !== null) {
       this.prepareFilesList(fileList[0]);
@@ -55,7 +53,7 @@ export class UpdateComponent {
   }
 
   uploadFilesSimulator(index: number) {
-    console.log("uploadFilesSimulator");
+    // console.log("uploadFilesSimulator");
     this.uploadSub[index] = this.upload(this.files[index]).subscribe(
       event => {
         if (event.type == HttpEventType.UploadProgress) {
@@ -65,7 +63,7 @@ export class UpdateComponent {
     );
     if (this.uploadSub[index] !== undefined) {
       this.fileIndex += 1;
-      console.log("this.fileIndex:", this.fileIndex);
+      // console.log("this.fileIndex:", this.fileIndex);
     }
 
   }
