@@ -10,10 +10,11 @@
       <mat-icon class="mat-toolbar-icon" aria-label="Side nav toggle icon">menu</mat-icon>
     </button>
     <span class="mat-toolbar-title">{{title}}</span>
+    
   </mat-toolbar-row>
 </mat-toolbar>
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="'dialog'" [mode]="'side'" [opened]="(isHandset$ | async) === false">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="'dialog'" [mode]="'side'" [opened]="(isHandset$ | async) === true">
     <!--      [mode]="(isHandset$ | async) ? 'over' : 'side'"-->
     <!--    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"-->
     <mat-nav-list>
@@ -22,16 +23,14 @@
         <span class="mat-list-item-span">{{navlist.text}}</span>
       </a>
     </mat-nav-list>
-
   </mat-sidenav>
-
   <router-outlet></router-outlet>
   <!--<router-outlet> 会告诉路由器要在哪里显示路由的视图。-->
-  <footer class="page-footer font-small blue">
-    <div class="footer-copyright ">Copyright © 2023
-      <a href="https://www.singfly.com.cn/">Singfly</a>
-      All rights reserved.
-    </div>
-  </footer>
 </mat-sidenav-container>
+<footer class="page-footer font-small blue">
+  <div class="footer-copyright ">Copyright © 2023
+    <a href="https://www.singfly.com.cn/">Singfly</a>
+    All rights reserved. <span >version:{{version}}</span>
+  </div>
+</footer>
 

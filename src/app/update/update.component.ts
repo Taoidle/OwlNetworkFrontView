@@ -19,6 +19,8 @@ export class UpdateComponent {
   public fileIndex: number = 0;
 
 
+
+
   onFileDropped(fileList: FileList) {
     this.fileIndex = this.files.length;
     if (fileList !== null) {
@@ -72,6 +74,7 @@ export class UpdateComponent {
     const formData = new FormData();
     // @ts-ignore
     formData.append("file", file, file.name);
+    console.log(file)
     return this.http.post("/api/update", formData, {
       reportProgress: true,
       observe: 'events'

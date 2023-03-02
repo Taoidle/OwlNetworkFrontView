@@ -1,27 +1,8 @@
-/* AppComponent's private CSS styles */
-//h1 {
-//  margin-bottom: 0;
-//}
-//nav a {
-//  padding: 1rem;
-//  text-decoration: none;
-//  margin-top: 10px;
-//  display: inline-block;
-//  background-color: #e8e8e8;
-//  color: #3d3d3d;
-//  border-radius: 4px;
-//}
-//
-//nav a:hover {
-//  color: white;
-//  background-color: #42545C;
-//}
-//nav a.active {
-//  background-color: black;
-//}
+
 .top-of-page {
   display: block;
 }
+
 mat-toolbar {
   position: fixed;
   top: 0;
@@ -29,7 +10,6 @@ mat-toolbar {
   left: 0;
   z-index: 10;
   padding: 0;
-  //height: 100%;
   background-color: #000000 !important;
   box-shadow: 0 2px 5px #0000004d;
 }
@@ -48,7 +28,6 @@ mat-toolbar {
 mat-sidenav-container {
   background-color: #fff;
   position: relative;
-  //top: 64px;
   z-index: 1;
   box-sizing: border-box;
   display: block;
@@ -102,7 +81,7 @@ mat-nav-list{
 }
 
 footer {
-  //position: absolute;
+  position:fixed;
   bottom: 0;
   width: 100%;
   height: 60px;
