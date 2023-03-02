@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {firstValueFrom, map, Observable, shareReplay } from "rxjs";
+import { first, firstValueFrom, map, Observable, retry, shareReplay } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
 
@@ -26,23 +26,9 @@ export class AppComponent {
 
   }
   ngOnInit(){
-    this.http.get("/VERSION").subscribe(res=>{
-      console.log(res)
+    this.http.get("/VERSION").subscribe((data)=>{
+      // @ts-ignore
+      this.version = data["version"];
     })
-    // firstValueFrom(this.http.get("/VERSION").pipe()).then((res:any) => {
-    //   console.log(res.error.text)
-    //   const reader = new FileReader();
-    //   reader.onload = (() => {
-    //     if (reader.result) {
-    //       console.log(reader.result);
-    //       this.version=reader.result
-    //     }
-    //   });
-    //   reader.readAsText(res.files[0], 'utf-8');
-
-    // }, e => {
-    //   // console.error(e)
-    //   console.error(e.error)
-    // });
   }
 }
