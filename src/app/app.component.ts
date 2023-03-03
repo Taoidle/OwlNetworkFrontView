@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { first, firstValueFrom, map, Observable, retry, shareReplay } from "rxjs";
+import { map, Observable, shareReplay } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
 
@@ -10,7 +10,7 @@ import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
 })
 export class AppComponent {
   title = '广州市鑫广飞信息科技有限公司';
-  version:any='';
+  version: any = '';
   public sidenavList = [
     {path: "index", icon: "wifi", text: "网络配置"},
     {path: "update", icon: "update", text: "OTA更新"},
@@ -22,11 +22,13 @@ export class AppComponent {
       shareReplay()
     );
 
-  constructor(private http: HttpClient,private breakpointObserver: BreakpointObserver) {
+  constructor(private http: HttpClient, private breakpointObserver: BreakpointObserver) {
 
   }
-  ngOnInit(){
-    this.http.get("/VERSION").subscribe((data)=>{
+
+  ngOnInit() {
+    const t = Date.now()
+    this.http.get("/VERSION?" + t).subscribe((data) => {
       // @ts-ignore
       this.version = data["version"];
     })
