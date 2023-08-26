@@ -14,6 +14,7 @@ export class AppComponent {
   version: any = '';
   public sidenavList = [
     {path: "index", icon: "wifi", text: "网络配置"},
+    {path: "offline", icon: "code", text: "脱机模式"},
     {path: "update", icon: "update", text: "OTA更新"},
   ];
 
