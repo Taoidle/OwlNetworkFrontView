@@ -1,0 +1,61 @@
+mat-card {
+  max-width: 500px;
+  min-width: 200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+mat-form-field {
+  display: block;
+}
+
+.mat-card-container {
+  //position: absolute;
+  display: table;
+  width: 100%;
+  height: calc(100% - 60px);
+}
+
+.card-container {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+mat-form-field {
+  margin-bottom: 20px;
+}
+
+button {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-bottom: 20px;
+}
+
+a {
+  display: block;
+  text-decoration: none;
+  color: #757575;
+}
+
+a:hover {
+  color: #3f51b5;
+}
+
+.forget-passwd {
+  float: left !important;
+}
+
+.register {
+  text-align: right;
+  //float: right;
+}
+
+:host ::ng-deep .mat-mdc-text-field-wrapper{
+  background-color: white;
+}

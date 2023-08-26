@@ -1,0 +1,34 @@
+<div class="mat-card-container">
+  <div class="card-container">
+    <mat-card>
+      <mat-card-content>
+        <form>
+          <h2>脱机设置</h2>
+          <div class="form-group">
+            <mat-form-field>
+              <mat-label>离线任务</mat-label>
+              <mat-select [(value)]="offline_selected">
+                <mat-option *ngFor="let item of offline_list" [value]="item.id">
+                  {{item.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field>
+              <mat-label>开机执行</mat-label>
+              <mat-select [(value)]="offline_run">
+                <mat-option *ngFor="let item of is_run" [value]="item.run">
+                  {{item.view}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </form>
+        <button mat-raised-button class="btn btn-success" (click)="offlineUpdate()">保存</button>
+        <button mat-raised-button class="btn" color="primary" (click)="offlineRun()" [disabled]="offline_run_btn">立即运行</button>
+        <button mat-raised-button class="btn" color="warn" (click)="offlineKill()" [disabled]="offline_run_btn">终止运行</button>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
