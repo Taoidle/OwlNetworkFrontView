@@ -3,6 +3,7 @@ import { firstValueFrom, map, Observable, retry, startWith } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { FormControl, Validators } from "@angular/forms";
 import { MatDialog } from '@angular/material/dialog';
+import { API } from "../app.conf";
 
 @Component({
   selector: 'app-index',
@@ -38,7 +39,7 @@ export class IndexComponent implements OnInit {
         ssid: this.ssid,
         passwd: this.password
       };
-      firstValueFrom(this.http.post("/api/wifi", data).pipe()).then(res => {
+      firstValueFrom(this.http.post(API + "/api/wifi", data).pipe()).then(res => {
       }, e => {
         console.error(e)
       });
@@ -49,7 +50,7 @@ export class IndexComponent implements OnInit {
 
   getList() {
     let wifi_list: string[] = [];
-    firstValueFrom(this.http.get("/api/list").pipe(retry(3))).then(res => {
+    firstValueFrom(this.http.get(API + "/api/list").pipe(retry(3))).then(res => {
       console.log(res);
       // @ts-ignore
       for (let i = 0; i < Object.keys(res["wifi"]).length; i++) {
@@ -69,7 +70,7 @@ export class IndexComponent implements OnInit {
 
   resetWiFi() {
 
-    firstValueFrom(this.http.get("/api/reset").pipe()).then(res => {
+    firstValueFrom(this.http.get(API + "/api/reset").pipe()).then(res => {
     }, e => {
       console.error(e)
     });
@@ -77,7 +78,7 @@ export class IndexComponent implements OnInit {
   }
 
   rescanWiFi() {
-    firstValueFrom(this.http.get("/api/rescan").pipe(retry(3))).then(res => {
+    firstValueFrom(this.http.get(API + "/api/rescan").pipe(retry(3))).then(res => {
     }, e => {
       console.error(e)
     });

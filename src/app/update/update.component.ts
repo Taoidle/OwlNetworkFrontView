@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { HttpClient, HttpEventType } from "@angular/common/http";
 import { Observable, Subscription } from "rxjs";
 import { MatDialog } from "@angular/material/dialog";
+import { API } from "../app.conf";
 
 @Component({
   selector: 'app-update',
@@ -74,8 +75,21 @@ export class UpdateComponent {
     const formData = new FormData();
     // @ts-ignore
     formData.append("file", file, file.name);
-    console.log(file)
-    return this.http.post("/api/update", formData, {
+    // console.log(file)
+    let url = ""
+    switch (this.upload_selected) {
+      case "ota":
+        url = (API + "/api/update");
+        break;
+      case "offline":
+        url = (API + "/api/offline/upload");
+        break;
+      // case "python":
+      //   url = (API + "/api/env/python/update");
+      //   break;
+    }
+    // const url = this.upload_selected === "ota" ? (API + "/api/update") : (API + "/api/offline/upload");
+    return this.http.post(url, formData, {
       reportProgress: true,
       observe: 'events'
     });

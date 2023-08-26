@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { map, Observable, shareReplay } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
+import { API } from "./app.conf";
 
 @Component({
   selector: 'app-root',
@@ -28,7 +29,7 @@ export class AppComponent {
 
   ngOnInit() {
     const t = Date.now()
-    this.http.get("/VERSION?" + t).subscribe((data) => {
+    this.http.get(API + "/api/version?" + t).subscribe((data) => {
       // @ts-ignore
       this.version = data["version"];
     })
