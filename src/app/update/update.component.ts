@@ -4,12 +4,29 @@ import { Observable, Subscription } from "rxjs";
 import { MatDialog } from "@angular/material/dialog";
 import { API } from "../app.conf";
 
+
+interface UploadType {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-update',
   templateUrl: './update.component.html',
   styleUrls: ['./update.component.scss']
 })
+
 export class UpdateComponent {
+
+  upload_types: UploadType[] = [
+    {value: 'ota', viewValue: 'OTA更新包'},
+    {value: 'offline', viewValue: '脱机模式更新包'},
+    // {value: 'python', viewValue: 'Python包'},
+    // {value: 'cpp', viewValue: ''},
+  ];
+
+  upload_selected = 'ota';
+
   uploadSub: Subscription[] = [];
 
   constructor(private http: HttpClient, public dialog: MatDialog) {

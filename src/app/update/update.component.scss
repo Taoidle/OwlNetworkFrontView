@@ -90,3 +90,21 @@ h3 {
     width: 100%
   }
 }
+
+.select-container {
+  display: flex;
+  width: 92%;
+  height: 60%;
+  padding: 1rem 0;
+
+  position: relative;
+  margin: 10px auto;
+  border-radius: 5px;
+}
+
+.upload-select {
+  background-color: rgba(248, 248, 248, 5);
+  border: dashed 1px #979797;
+  border-radius: 5px;
+  width: 200px;
+}
