@@ -1,0 +1,88 @@
+<div class="mat-card-container">
+  <div class="card-container">
+    <mat-tab-group [selectedIndex]="selected.value"
+                   (selectedIndexChange)="tabChange($event)">
+      <mat-tab label="Python3">
+        <table mat-table [dataSource]="pythonDataSource" class="mat-elevation-z8">
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="package">
+            <th mat-header-cell *matHeaderCellDef> Package </th>
+            <td mat-cell *matCellDef="let element"> {{element.package}} </td>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="version">
+            <th mat-header-cell *matHeaderCellDef> Version </th>
+            <td mat-cell *matCellDef="let element"> {{element.version}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <div class="table-paginator">
+          <button mat-raised-button class="btn btn-success" (click)="refresh()">刷新</button>
+          <button mat-raised-button class="btn btn-success" (click)="reload()">重载</button>
+          <mat-paginator #paginatorPython="matPaginator" [pageSizeOptions]="[10, 20]" (page)="pageChange($event)"
+                         showFirstLastButtons
+                         aria-label="Select page of periodic elements">
+          </mat-paginator>
+        </div>
+      </mat-tab>
+      <mat-tab label="C++">
+        <table mat-table [dataSource]="cppDataSource" class="mat-elevation-z8">
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="package">
+            <th mat-header-cell *matHeaderCellDef> Package </th>
+            <td mat-cell *matCellDef="let element"> {{element.package}} </td>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="version">
+            <th mat-header-cell *matHeaderCellDef> Version </th>
+            <td mat-cell *matCellDef="let element"> {{element.version}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <div class="table-paginator">
+          <button mat-raised-button class="btn btn-success" (click)="refresh()">刷新</button>
+          <button mat-raised-button class="btn btn-success" (click)="reload()">重载</button>
+          <mat-paginator #paginatorCpp="matPaginator" [pageSizeOptions]="[10, 20]" (page)="pageChange($event)"
+                         showFirstLastButtons
+                         aria-label="Select page of periodic elements">
+          </mat-paginator>
+        </div>
+      </mat-tab>
+      <mat-tab label="System">
+        <table mat-table [dataSource]="pkgDataSource" class="mat-elevation-z8">
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="package">
+            <th mat-header-cell *matHeaderCellDef> Package </th>
+            <td mat-cell *matCellDef="let element"> {{element.package}} </td>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="version">
+            <th mat-header-cell *matHeaderCellDef> Version </th>
+            <td mat-cell *matCellDef="let element"> {{element.version}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <div class="table-paginator">
+          <button mat-raised-button class="btn btn-success" (click)="refresh()">刷新</button>
+          <button mat-raised-button class="btn btn-success" (click)="reload()">重载</button>
+          <mat-paginator #paginatorSystem="matPaginator" [pageSizeOptions]="[10, 20]" (page)="pageChange($event)"
+                         showFirstLastButtons
+                         aria-label="Select page of periodic elements">
+          </mat-paginator>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>
