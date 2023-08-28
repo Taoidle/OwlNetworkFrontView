@@ -16,6 +16,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatDialogModule } from "@angular/material/dialog";
 import { IndexComponent, AlertDialogRescan, AlertDialogReset, AlertDialogConnect } from './index/index.component';
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import { MatSelectModule } from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { MatAutocompleteModule } from "@angular/material/autocomplete";
     ReactiveFormsModule,
     MatDialogModule,
     MatAutocompleteModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
